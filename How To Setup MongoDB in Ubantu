@@ -1,0 +1,65 @@
+How To Setup MongoDB, PHP5 & Apache2 on Ubuntu
+
+
+Step 1: Install Apache2
+$ sudo apt-get install apache2
+
+Step 2: Install MongoDB
+$ sudo apt-key adv --keyserver hkp://keyserver.ubuntu.com:80 --recv 7F0CEB10
+$ echo 'deb http://downloads-distro.mongodb.org/repo/ubuntu-upstart dist 10gen' | sudo tee /etc/apt/sources.list.d/mongodb.list
+
+
+$ sudo apt-get update
+$ sudo apt-get install mongodb-org mongodb-org-server
+
+Step 3: Install PHP7
+
+$ sudo apt-get install php7 php7-dev libapache2-mod-php7 apache2-threaded-dev php-pear php7-mongo
+
+Step 4: Install MongoDB PHP Module
+$ sudo pecl install mongo
+$ sudo echo "extension=mongo.so" >> /etc/php5/apache2/php.ini
+
+$ sudo service apache2 restart
+
+
+
+Step 5: Verify Setup
+
+create an phpinfo.php file
+<?php
+ phpinfo();
+?>
+
+  http://1.2.3.4/phpinfo.php
+------------------------------------------------------------------
+
+
+How to install PHP MongoDB driver for Linux?
+
+---------------------------------------------
+1.Connect to the server using SSH.
+
+2.Install prerequisite build packages:
+yum groupinstall "Development Tools"
+# yum install php-pear php-devel
+3.Execute the following to install a driver:
+
+pecl install mongodb
+
+
+4.Add the following line to your /etc/php.ini file:
+
+extension=mongodb.so
+
+5.Check whether the driver is available:
+
+php -m | grep mongo
+mongo
+
+
+
+
+
+
+
